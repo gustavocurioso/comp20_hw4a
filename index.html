@@ -1,0 +1,88 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Quick Pick</title>
+        <link href="style.css" rel="stylesheet" type="text/css">
+    </head>
+    <body>
+        <h1>Lucky For Life</h1>
+        <form method="post">
+            5 Numbers:<br />
+            <input type="text" id="numbers" name="numbers"><br /><br />
+            Lucky Ball Number:<br />
+            <input type="text" id="lucky_number" name="lucky_number"><br />
+            <br /><br />
+            <button onclick="lottery()">GO!</button>
+        </form>
+        <script type="text/javascript">
+            function lottery() {
+                // initial array with all elements as 0
+                var lottery_numbers = [0, 0, 0, 0, 0];
+                // loop to fill array with 5 different numbers
+                for (i = 0; i < 5; i++) {
+                    num = Math.floor(Math.random() * 48 + 1);
+                    while (lottery_numbers.includes(num)) {
+                        num = Math.floor(Math.random() * 48 + 1);
+                    }
+                    lottery_numbers[i] = num;
+                }
+                // sorts the array
+                lottery_numbers.sort(function(a, b){return a - b});
+                // picks a lucky number different from the other 5 numbers
+                var lucky = Math.floor(Math.random() * 18 + 1);
+                while (lottery_numbers.includes(lucky)) {
+                    lucky = Math.floor(Math.random() * 18 + 1);
+                }
+
+                // gets user input from first box
+                var five_nums = document.getElementById("numbers").value;
+                // extracts the five ints from the string into an array
+                var user_input = five_nums.match(/\d+/g);
+                for (i = 0; i < 5; i++) {
+                   user_input[i] = parseInt(user_input[i]);
+                }
+                // gets user input for the lucky number
+                var user_lucky =document.getElementById("lucky_number").value;
+
+                var correct_nums = 0;
+                for (i = 0; i < 5; i++) {
+                    if (user_input.includes(lottery_numbers[i])) {
+                        correct_nums += 1;
+                    }
+                }
+
+                if (user_lucky == lucky) {
+                    correct_nums += 10;
+                }
+
+                switch(correct_nums) {
+                    case 10: document.write("<h1 style=\"font-family:impact,sans-serif;text-align:center;margin-top:150px;\">You won $4</h1>");break;
+                    case 11: document.write("<h1 style=\"font-family:impact,sans-serif;text-align:center;margin-top:150px;\">You won $6</h1>");break;
+                    case 2: document.write("<h1 style=\"font-family:impact,sans-serif;text-align:center;margin-top:150px;\">You won $3</h1>");break;
+                    case 12: document.write("<h1 style=\"font-family:impact,sans-serif;text-align:center;margin-top:150px;\">You won $25</h1>");break;
+                    case 3: document.write("<h1 style=\"font-family:impact,sans-serif;text-align:center;margin-top:150px;\">You won $20</h1>");break;
+                    case 13: document.write("<h1 style=\"font-family:impact,sans-serif;text-align:center;margin-top:150px;\">You won $150</h1>");break;
+                    case 4: document.write("<h1 style=\"font-family:impact,sans-serif;text-align:center;margin-top:150px;\">You won $200</h1>");break;
+                    case 14: document.write("<h1 style=\"font-family:impact,sans-serif;text-align:center;margin-top:150px;\">You won $5000</h1>");break;
+                    case 5: document.write("<h1 style=\"font-family:impact,sans-serif;text-align:center;margin-top:150px;\">You won $25000 a YEAR for LIFE!</h1>");break;
+                    case 15: document.write("<h1 style=\"font-family:impact,sans-serif;text-align:center;margin-top:150px;\">You won $7000 a WEEK for LIFE!</h1>");break;
+                    default: document.write("<h1 style=\"font-family:impact,sans-serif;text-align:center;margin-top:150px;\">You won nothing. Better luck next time!</h1>");break;
+                }
+
+                // testing purposes
+                document.write("<br />lottery: ");
+                for (i = 0; i < 5; i++) {
+                    document.write(lottery_numbers[i] + " ");
+                }
+                document.write("<br />lucky: " + lucky);
+                document.write("<br />user: ");
+                for (i = 0; i < 5; i++) {
+                    document.write(user_input[i] + " ");
+                }
+                document.write("<br />user lucky: " + user_lucky);
+                document.write("<br />correct_nums: " + correct_nums);
+            }
+        </script>
+    </body>
+</html>

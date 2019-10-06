@@ -1,0 +1,41 @@
+body {
+    text-align: center;
+    background-color: #F4F8F7;
+    color: #000000;
+    font-family: impact, sans-serif;
+    font-size: 25px;
+}
+
+h1 {
+    margin-top: 150px;
+    font-size: 50px;
+    text-align: center;
+    font-family: impact, sans-serif;
+}
+
+input[type="text"] {
+    outline: none;
+    height: 30px;
+    font-size: 25px;
+    background-color: #000000;
+    border: none;
+    color: #F4F8F7;
+}
+
+input[type="submit"] {
+    outline: none;
+    width: 100px;
+    font-size: 25px;
+    background-color: #000000;
+    color: #F4F8F7;
+    border: none;
+}
+
+button {
+    outline: none;
+    width: 100px;
+    font-size: 25px;
+    background-color: #000000;
+    color: #F4F8F7;
+    border: none;
+}
